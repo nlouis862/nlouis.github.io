@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Digit-Puzzler</title>
+
+	<style>
+	body{
+		padding-top: 5%;
+	}
+	.name{
+    padding: 30px 150px 30px 150px;
+    background: #FB1;
+    font-size: 35px;
+ }
+    .calc_wrapper{
+        margin-top: 10%;
+    }
+    input{
+        padding: 15px 15px 15px 15px;
+        width: 250px;
+    }
+    input:focus{
+        background: grey;
+        outline-color: grey;
+        border-color: grey;
+        font-weight: bold;
+        font-size: 13px;
+        color: #FB1;
+    }
+    #exp{
+    	font-size: 50px;
+    }
+    #solution{
+        background: #011;
+        border-color: #FB1;
+        width: 190px;
+        font-size: 50px;
+        color: #fff;
+        opacity: 0.6;
+    }
+    .ans{
+        padding: 17px 32px 17px 32px;
+        border-style: none;
+        background: #011;
+        color: #fff;
+        font-size: 50px;
+    }
+    .ans:focus{
+        outline-color: #fff;
+    }
+    .ans:hover{
+        cursor: pointer;
+        z-index: 999999;
+    }
+    .note{
+    	font-family: comic sans ms;
+    }
+</style>
+
+</head>
+<body>
+
+<center>
+<p>Code Solution to.</p>
+<img src="https://scontent-lht6-1.xx.fbcdn.net/v/t1.0-9/20727897_863402393809566_660706044994050557_n.jpg?oh=2a75674bb80f7ae865b727e79b6f5739&oe=5A2BD127" alt="" height="100"><br><br><br>
+<b>Enter a whole number in the Put Number field and click <button style="border-style: none; background: #011; color: #fff;" disabled>=</button></b><br><br>
+Only the numbers in the picture above are summed, <br>so the result will just be the possible sum of three of those numbers.<br><br>
+<span class="name"> Number-Puzzler <span style="font-weight: bold; font-size: 50px; font-style: italic;">X<sub>o</sub></span> </span><br><br><br>
+<div>
+    <input type="text" id="exp" value="X + Y + Z" disabled><button class="ans" onclick="ret()">=</button><input type="text" id="solution" value="Put Number"><br><br>
+    </div><br><br><br><br><br><br><br><br><br>
+    <span class="note"> What we do:<br>
+    	We simply get a whole number and give you as result the posible <br>arithmetic addition that can be performed to obtain the number.
+     </span>
+     <br><br><br><br><br>
+    <b> Made with all the <img src="https://www.facebook.com/images/emoji.php/v9/fca/1/28/1f496.png" alt=""> in the <img src="https://www.facebook.com/images/emoji.php/v9/f20/1/28/1f30d.png"> By Ntirpang Louis(A.K.A Sir. NLOUIS)</b>
+</center>
+    </div>
+
+<script>
+
+function fac(n) 
+{
+	
+	if (n <= 1) 
+		{
+			return 1;
+		}
+	else 
+	{
+		return n * fac(n-1);
+	}
+
+}
+
+function ret(){
+var sol = document.getElementById("exp");
+var ans = document.getElementById("solution").value;
+var facN = fac(8);
+var facK = fac(3);
+var comb = facN / (fac(8-3)*facK);
+var num = [1,3,5,7,9,11,13,15];
+var realRand;
+var sum = 0;
+var arr = new Array;
+
+for(var i = 0; i <= comb*comb*comb; i++)
+{
+
+	for(var j = 0; j < 3; j++)
+	{
+         realRand = Math.floor((Math.random() * ((num.length - 1) + 1) + 1) - 1)
+
+         	arr[j] = num[realRand];
+
+         sum += arr[j];
+	}
+
+if (sum == ans)
+ { 
+ 	sol.value = arr[0] + " + " + arr[1] + " + " + arr[2];
+ 	
+ 	break;
+ }
+
+ else {
+ 	sol.value = "No result";
+ }
+
+sum = 0;
+
+}
+
+}
+</script>
+</body>
+</html>
